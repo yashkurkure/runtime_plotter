@@ -77,8 +77,11 @@ void bubbleSort(int arr[],int n)
 //Wrapper API
 
 
-/*STEP 4: ---> Since the function we are testing uses an INTEGER ARRAY we use the function mentioned below the "FOR INT ARRAY" comment.
-               If your function was using VECTOR<INTEGER> you would place your function call in the function below the "FOR INT VECTOR" comment
+/*STEP 4: ---> Since the function we are testing uses an INTEGER ARRAY we use the 
+                function mentioned below the "FOR INT ARRAY" comment.
+                
+         Note: If your function was using VECTOR<INTEGER> you would place your 
+               function call in the function below the "FOR INT VECTOR" comment
 */
     //FOR INT ARRAY
     void program::testRuntime(int arr[], int length)
@@ -139,8 +142,8 @@ void bubbleSort(int arr[],int n)
     }
 ```
 
-3. In the src folder, open a terminal and run the make command.
-4. Create a file such as "input.txt" and add a comma separated list on sepearate lines. Each line is a separate input for your function. The function will be run on each line and you will be returned the runtime required for each line in **milliseconds**.
+3. In the src folder, open a terminal and run the *make* command.
+4. Create a file such as "input.txt" and add a comma separated list on sepearate lines. Each line is a separate input for your function. The function will be run on each input line and you will be returned the runtime required for each input in **milliseconds**.
 
 Example of a input file: (Feel free to play around with src/gen.sh to generate such a file)
 ```
@@ -165,7 +168,7 @@ Example of a input file: (Feel free to play around with src/gen.sh to generate s
 | func(char data[], int size) | 6 |
 | func(std::vector< char > vec) | 7 |
  
-6. The program will print the runtime required for each input value to stdout on a separtate line. For example:
+6. The program will print the runtime required in **milliseconds** for each input value to stdout on a separtate line. For example:
 ```
 InputFIle, type: out, 0
 2.67789  -->For input on line 1 of input.txt
