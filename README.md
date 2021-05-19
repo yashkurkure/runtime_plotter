@@ -6,15 +6,14 @@ Written in: C++, bash
 
 Plot the runtime of C++ functions of the form:
 
-func(int data[], int size)
-func(char data[], int size)
-func(double data[], int size)
-func(float data[], int size)
-
-func(std::vector<int> vec)
-func(std::vector<char> vec)
-func(std::vector<double> vec)
-func(std::vector<float> vec)
+-func(int data[], int size)
+-func(char data[], int size)
+-func(double data[], int size)
+-func(float data[], int size)
+-func(std::vector<int> vec)
+-func(std::vector<char> vec)
+-func(std::vector<double> vec)
+-func(std::vector<float> vec)
 
 ## Example Usage
 
