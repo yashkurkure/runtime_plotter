@@ -20,9 +20,12 @@ int main(int argc, char* argv[])
 		vector<double> out;
 		runner.runOnInputFile(inputFile, stoi(argv[2]), out);
 
-		for(auto i : out)
+		vector<int> inputSizes;
+		runner.getInputSizes(inputSizes);
+
+		for(int i = 0; i < out.size(); i++)
 		{
-			cout<< i << endl;
+			cout<<inputSizes[i]<<" "<<out[i]<<endl;
 		}
 	}
 	else
