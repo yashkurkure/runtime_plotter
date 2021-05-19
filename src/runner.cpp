@@ -24,6 +24,15 @@ runner::~runner()
 
 }
 
+void runner::getInputSizes(std::vector<int> &out)
+{
+    //Copy inputSizes vector into out
+    for(int i : runner::inputSizes)
+    {
+        out.push_back(i);
+    }
+}
+
 //Runs the program on the specified input
 //type specifies the data type of the  comma separated list in the input string
 //returns the runtime of the program on the given input
@@ -34,6 +43,7 @@ double runner::runOnInput(std::string input, int type)
 
     std::vector<std::string> inputV;
     inputParserToStringVec(input, inputV);
+    runner::inputSizes.push_back(inputV.size()); //Stores the size of the input
 
 //ARRAYS
     //INT ARRAY

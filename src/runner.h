@@ -23,6 +23,7 @@ class runner
 
     private:
         double runtime;
+        std::vector<int> inputSizes; //Vector stores the size of each input the function is run on.s
         void inputParserToStringVec(std::string input, std::vector<std::string> &out);
         bool fileParserToStringVec(std::string inputFile, std::vector<std::string> &out);
     
@@ -33,6 +34,7 @@ class runner
         double runOnInput(std::string input, int type);
         void runOnMultiInput(std::vector<std::string> inputV, int type, std::vector<double> &out);
         void runOnInputFile(std::string inputFileName, int type, std::vector<double> &out);
+        void getInputSizes(std::vector<int> &out);
 };
 
 #endif
