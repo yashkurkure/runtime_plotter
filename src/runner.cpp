@@ -29,9 +29,14 @@ runner::~runner()
 //returns the runtime of the program on the given input
 double runner::runOnInput(std::string input, int type)
 {
+    int numRuns = 10;
+
+
     std::vector<std::string> inputV;
     inputParserToStringVec(input, inputV);
 
+//ARRAYS
+    //INT ARRAY
     if(type == runner::INT_ARRAY)
     {
         const int length = inputV.size();
@@ -44,7 +49,7 @@ double runner::runOnInput(std::string input, int type)
 
         double ms = 0;
         double s = 0;
-        for(int count = 0; count < 100; count ++)
+        for(int count = 0; count < numRuns; count ++)
         {
             struct timespec begin, end;
 
@@ -65,7 +70,272 @@ double runner::runOnInput(std::string input, int type)
         }
 
         
-        return ms/100;
+        return ms/(double)numRuns; //average runtime
+
+    }
+
+    //DOUBLE ARRAY
+    if(type == runner:: DOUBLE_ARRAY)
+    {
+        const int length = inputV.size();
+        double arr[length];
+
+        for(int i = 0; i < length; i++)
+        {
+            arr[i] = stod(inputV[i]);
+        }
+
+        double ms = 0;
+        double s = 0;
+        for(int count = 0; count < numRuns; count ++)
+        {
+            struct timespec begin, end;
+
+
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &begin); //gets cpu time
+
+            pObject.testRuntime(arr, length);
+
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end); //gets cpu time
+
+            long seconds = end.tv_sec - begin.tv_sec;
+	        long nseconds = end.tv_nsec - begin.tv_nsec;
+	        double elapsed = seconds + nseconds*1e-9;
+
+            s += elapsed;
+            ms+= elapsed*1e+6;
+
+        }
+
+        
+        return ms/(double)numRuns; //average runtime
+
+    }
+
+    //FLOAT ARRAY
+    if(type == runner::FLOAT_ARRAY)
+    {
+        const int length = inputV.size();
+        float arr[length];
+
+        for(int i = 0; i < length; i++)
+        {
+            arr[i] = stof(inputV[i]);
+        }
+
+        double ms = 0;
+        double s = 0;
+        for(int count = 0; count < numRuns; count ++)
+        {
+            struct timespec begin, end;
+
+
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &begin); //gets cpu time
+
+            pObject.testRuntime(arr, length);
+
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end); //gets cpu time
+
+            long seconds = end.tv_sec - begin.tv_sec;
+	        long nseconds = end.tv_nsec - begin.tv_nsec;
+	        double elapsed = seconds + nseconds*1e-9;
+
+            s += elapsed;
+            ms+= elapsed*1e+6;
+
+        }
+
+        
+        return ms/(double)numRuns; //average runtime
+
+    }
+
+    //CHAR ARRAY
+    if(type == runner::CHAR_ARRAY)
+    {
+        const int length = inputV.size();
+        char arr[length];
+
+        for(int i = 0; i < length; i++)
+        {
+            arr[i] = inputV[i][0];
+        }
+
+        double ms = 0;
+        double s = 0;
+        for(int count = 0; count < numRuns; count ++)
+        {
+            struct timespec begin, end;
+
+
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &begin); //gets cpu time
+
+            pObject.testRuntime(arr, length);
+
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end); //gets cpu time
+
+            long seconds = end.tv_sec - begin.tv_sec;
+	        long nseconds = end.tv_nsec - begin.tv_nsec;
+	        double elapsed = seconds + nseconds*1e-9;
+
+            s += elapsed;
+            ms+= elapsed*1e+6;
+
+        }
+
+        
+        return ms/(double)numRuns; //average runtime
+
+    }
+
+
+//VECTORS
+
+    //INT_VECTOR
+    if(type == runner::INT_VECTOR)
+    {
+          std::vector<int> vec;
+
+        for(int i = 0; i < inputV.size(); i++)
+        {
+            vec.push_back(stoi(inputV[i]));
+        }
+
+        double ms = 0;
+        double s = 0;
+        for(int count = 0; count < numRuns; count ++)
+        {
+            struct timespec begin, end;
+
+
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &begin); //gets cpu time
+
+            pObject.testRuntime(vec);
+
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end); //gets cpu time
+
+            long seconds = end.tv_sec - begin.tv_sec;
+	        long nseconds = end.tv_nsec - begin.tv_nsec;
+	        double elapsed = seconds + nseconds*1e-9;
+
+            s += elapsed;
+            ms+= elapsed*1e+6;
+        }
+        
+        return ms/(double)numRuns; //average runtime
+    }
+
+
+    //DOUBLE_VECTOR
+    if(type == runner::DOUBLE_VECTOR)
+    {
+          std::vector<double> vec;
+
+        for(int i = 0; i < inputV.size(); i++)
+        {
+            vec.push_back(stod(inputV[i]));
+        }
+
+        double ms = 0;
+        double s = 0;
+        for(int count = 0; count < numRuns; count ++)
+        {
+            struct timespec begin, end;
+
+
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &begin); //gets cpu time
+
+            pObject.testRuntime(vec);
+
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end); //gets cpu time
+
+            long seconds = end.tv_sec - begin.tv_sec;
+	        long nseconds = end.tv_nsec - begin.tv_nsec;
+	        double elapsed = seconds + nseconds*1e-9;
+
+            s += elapsed;
+            ms+= elapsed*1e+6;
+
+        }
+
+        
+        return ms/(double)numRuns; //average runtime
+
+    }
+
+        
+    //FLOAT VECTOR
+    if(type == runner::FLOAT_VECTOR)
+    {
+          std::vector<float> vec;
+
+        for(int i = 0; i < inputV.size(); i++)
+        {
+            vec.push_back(stof(inputV[i]));
+        }
+
+        double ms = 0;
+        double s = 0;
+        for(int count = 0; count < numRuns; count ++)
+        {
+            struct timespec begin, end;
+
+
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &begin); //gets cpu time
+
+            pObject.testRuntime(vec);
+
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end); //gets cpu time
+
+            long seconds = end.tv_sec - begin.tv_sec;
+	        long nseconds = end.tv_nsec - begin.tv_nsec;
+	        double elapsed = seconds + nseconds*1e-9;
+
+            s += elapsed;
+            ms+= elapsed*1e+6;
+
+        }
+
+        
+        return ms/(double)numRuns; //average runtime
+
+    }
+
+
+    //CHAR VECTOR
+    if(type == runner::CHAR_VECTOR)
+    {
+        std::vector<char> vec;
+
+        for(int i = 0; i < inputV.size(); i++)
+        {
+            vec.push_back(inputV[i][0]);
+        }
+
+        double ms = 0;
+        double s = 0;
+        for(int count = 0; count < numRuns; count ++)
+        {
+            struct timespec begin, end;
+
+
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &begin); //gets cpu time
+
+            pObject.testRuntime(vec);
+
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end); //gets cpu time
+
+            long seconds = end.tv_sec - begin.tv_sec;
+	        long nseconds = end.tv_nsec - begin.tv_nsec;
+	        double elapsed = seconds + nseconds*1e-9;
+
+            s += elapsed; //seconds
+            ms+= elapsed*1e+6; //milliseconds
+
+        }
+
+        
+        return ms/(double)numRuns; //average runtime
 
     }
 
